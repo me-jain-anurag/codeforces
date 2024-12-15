@@ -17,17 +17,17 @@ int main()
     {
         int n, x, res = 0;
         cin >> n;
-        vector<int> a(n + 1, 0);
+        vector<int> freq(n + 1, 0);
         
         rep(i, 0, n)
         {
             cin >> x;
-            a[x]++;
+            freq[x]++;
         }
         
         rep(i, 1, n + 1)
         {
-            res += a[i] / 2;
+            res += freq[i] / 2;
         }
         
         cout << res << endl;
