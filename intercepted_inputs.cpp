@@ -1,48 +1,58 @@
 #include <bits/stdc++.h>
-#define ll long long
-#define ull unsigned long long
-#define rep(i, x, y) for (ll i = (ll)x; i < (ll)y; i++)
 using namespace std;
+
+constexpr double PI = 3.141592653589793;
+constexpr int MOD = 1000000007;
+
+#define ll long long
+#define ld long double
+#define ull unsigned long long
+#define vll vector<long long>
+#define vvll vector<vector<long long>>
+#define umii unordered_map<int, int>
+#define umll unordered_map<ll, ll>
+#define umsi unordered_map<string, int>
+
+#define $ "\n"
+#define pb push_back
+#define fi first
+#define se second
+#define FOR(i, a, b) for (ll i = (ll)a; i < (ll)b; i++)
+#define RFOR(i, a, b) for (ll i = (ll)a; i > (ll)b; i--)
+#define all(v) (v).begin(), (v).end()
+#define FAST_IO ios::sync_with_stdio(false); cin.tie(nullptr);
 
 void solve()
 {
-    int k;
+    ll k;
     cin >> k;
-    vector<int> a(k);
-
-    int res1, res2;
-    rep(i, 0, k)
+    vector<ll> a(k);
+    
+    FOR(i, 0, k) cin >> a[i];
+    sort(all(a));
+    
+    ll i = 0, j = k - 1;
     {
-
-        cin >> a[i];
-        rep(j, 0, i)
+        while(i < j)
         {
-            if (a[i] * a[j] == k - 2)
+            ll mul = a[i] * a[j];
+            if (mul < k - 2) i++;
+            else if (mul > k - 2) j--;
+            else
             {
-                res1 = a[i];
-                res2 = a[j];
+                cout << a[i] << " " << a[j] << endl;
                 break;
             }
         }
     }
-
-    cout << res1 << " " << res2 << endl;
-
-    return;
 }
+
 
 int main()
 {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
+    FAST_IO
 
-    int t;
-    cin >> t;
-
-    while (t--)
-    {
-        solve();
-    }
+    int t; cin >> t; while (t--) { solve(); }
 
     return 0;
 }
