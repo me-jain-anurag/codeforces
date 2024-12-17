@@ -23,30 +23,31 @@ constexpr int MOD = 1000000007;
 #define all(v) (v).begin(), (v).end()
 #define FAST_IO ios::sync_with_stdio(false); cin.tie(nullptr);
 
-ll solve()
+void solve()
 {
     ll n, x;
     cin >> n >> x;
-
-    umll f;
+    ll res = n;
+    vll freq(n, 0);
 
     FOR(i, 0, n)
     {
-        ll a;
-        cin >> a;
-
-        f[a % x]++;
+        int k;
+        cin >> k;
+        if (k < n) freq[k]++;
     }
 
     FOR(i, 0, n)
     {
-        if (f.find(i % x) == f.end()) return i;
-
-        f[i % x]--;
-        if (f[i % x] == 0) f.erase(i % x);
+        if (freq[i] == 0)
+        {
+            res = i;
+            break;
+        }
+        if (i + x < n) freq[i + x] += freq[i] - 1;
     }
 
-    return n;
+    cout << res << $;
 }
 
 int main()
@@ -55,10 +56,7 @@ int main()
 
     int t;
     cin >> t;
-    while (t--)
-    {
-        cout << solve() << $;
-    }
+    while (t--) { solve(); }
 
     return 0;
 }
