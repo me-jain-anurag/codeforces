@@ -15,7 +15,6 @@ constexpr int MOD = 1000000007;
 
 #define $ "\n"
 #define pb push_back
-#define mp make_pair
 #define fi first
 #define se second
 #define FOR(i, a, b) for (ll i = (ll)a; i < (ll)b; i++)
