@@ -13,7 +13,7 @@ constexpr int MOD = 1000000007;
 #define umll unordered_map<ll, ll>
 #define umsi unordered_map<string, int>
 
-#define $ "\n"
+#define $ " \n"
 #define pb push_back
 #define fi first
 #define se second
