@@ -32,7 +32,7 @@ void solve()
         sum += k;
     }
 
-    string res = (sum / n == x) ? "YES" : "NO";
+    string res = (sum == n * x) ? "YES" : "NO";
     cout << res << endl;
 }
 
