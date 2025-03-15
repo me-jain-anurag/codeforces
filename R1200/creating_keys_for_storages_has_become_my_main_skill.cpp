@@ -28,6 +28,7 @@ void solve()
     int k = 0;
     for (; i < n; i++)
     {
+        if (k == n - 1) break;
         if ((i | x) == x)
         {
             mask |= i;
@@ -42,7 +43,8 @@ void solve()
         k++;
     }
 
-    cout << (mask ^ x) << endl;
+    if ((i | mask) == x) cout << i << endl;
+    else cout << (mask ^ x) << endl;
 
 }
 
