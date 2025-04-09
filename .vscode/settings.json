@@ -3,6 +3,8 @@
         "iostream": "cpp",
         "vector": "cpp",
         "chrono": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "limits": "cpp",
+        "valarray": "cpp"
     }
 }
