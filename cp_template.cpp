@@ -13,7 +13,6 @@ constexpr int MOD = 1000000007;
 #define umll unordered_map<ll, ll>
 #define umsi unordered_map<string, int>
 
-#define $ " \n"
 #define fi first
 #define se second
 #define FOR(i, a, b) for (ll i = (ll)a; i < (ll)b; i++)
