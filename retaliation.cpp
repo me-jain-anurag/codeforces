@@ -33,7 +33,30 @@ auto min(T a, U b) -> decltype(a + b)
 
 void solve()
 {
+    int n;
+    cin >> n;
+    vector<ll> a(n);
+    for (ll& x : a) cin >> x;
+    int y = (2 * a[0] - a[1]) / (n + 1);
+    int x = a[1] - a[0] + y;
 
+    if (x < 0 or y < 0)
+    {
+        cout << "NO\n";
+        return;
+    }
+
+    int flag = 1, r = y * (n + 1);
+    for (int i = 0; i < n; i++)
+    {
+        r += x - y;
+        if (r != a[i])
+        {
+            flag = 0;
+            break;
+        }
+    }
+    cout << (flag ? "YES\n" : "NO\n");
 }
 
 int main()

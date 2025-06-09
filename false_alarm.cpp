@@ -33,7 +33,17 @@ auto min(T a, U b) -> decltype(a + b)
 
 void solve()
 {
-
+    int n, x;
+    cin >> n >> x;
+    vector<int> a(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+    }
+    int l = 0, r = n - 1;
+    while (a[l] == 0) l++;
+    while (a[r] == 0) r--;
+    cout << (((r - l + 1) <= x) ? "YES\n" : "NO\n");
 }
 
 int main()

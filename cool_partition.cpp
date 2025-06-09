@@ -33,7 +33,33 @@ auto min(T a, U b) -> decltype(a + b)
 
 void solve()
 {
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    vector<int> distinct(n, 0), freq(n + 1, 0);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+        freq[a[i]]++;
+        if (freq[a[i]] == 1) distinct[i]++;
+        distinct[i] += (i ? distinct[i - 1] : 0);
+    }
 
+    int r = n - 1, ans = 0, d = 0;
+    fill(all(freq), 0);
+    for (int l = n - 1; l >= 0; l--)
+    {
+        freq[a[l]]++;
+        if (freq[a[l]] == 1) d++;
+        if (d == distinct[r])
+        {
+            ans++;
+            d = 0;
+            for (int i = l; i <= r; i++) freq[a[i]] = 0;
+            r = l - 1;
+        }
+    }
+    cout << ans << endl;
 }
 
 int main()
