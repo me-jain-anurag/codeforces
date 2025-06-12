@@ -33,19 +33,21 @@ auto min(T a, U b) -> decltype(a + b)
 
 void solve()
 {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-    for (int i = 1; i < n - 1; i++)
+    int a, b, xk, yk, xq, yq;
+    cin >> a >> b >> xk >> yk >> xq >> yq;
+    vector<int> dx = {-1, 1, -1, 1}, dy = {-1, -1, 1, 1};
+    set<pair<int, int>> k, q;
+    for (int i = 0; i < 4; i++)
     {
-        if (s[i - 1] == '.' and s[i] == '.' and s[i + 1] == '.')
-        {
-            cout << 2 << endl;
-            return;
-        }
+        k.insert({xk + dx[i] * a, yk + dy[i] * b});
+        k.insert({xk + dx[i] * b, yk + dy[i] * a});
+        q.insert({xq + dx[i] * a, yq + dy[i] * b});
+        q.insert({xq + dx[i] * b, yq + dy[i] * a});
     }
-    cout << count(all(s), '.') << endl;
+    int res = 0;
+    for (auto& x : k) if (q.contains(x)) res++;
+
+    cout << res << endl;
 }
 
 int main()

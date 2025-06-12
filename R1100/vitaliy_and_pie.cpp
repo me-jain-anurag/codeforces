@@ -1,53 +1,66 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-constexpr double PI = 3.141592653589793;
-constexpr int MOD = 1000000007;
+using ll = long long;
+using ld = long double;
+using pii = pair<int, int>;
+using pll = pair<ll, ll>;
 
-#define $ "\n"
-#define ll long long
-#define ld long double
-#define ull unsigned long long
-#define vll vector<long Long>
-#define vvll vector<vector<long long>>
-
+#define fastio ios::sync_with_stdio(false); cin.tie(nullptr)
+#define FOR(i, a, b) for(ll i = (ll)a; i < (ll)b; ++i)
+#define RFOR(i, a, b) for(ll i = (ll)a; i > (ll)b; --i)
+#define all(x) (x).begin(), (x).end()
+#define sz(x) (int)(x).size()
 #define pb push_back
-#define mp make_pair
 #define fi first
 #define se second
-#define FOR(i, a, b) for (ll i = (ll)a; i < (ll)b; i++)
-#define RFOR(i, a, b) for (ll i = (ll)a; i > (ll)b; i--)
-#define all(v) (v).begin(), (v).end()
-#define FAST_IO ios::sync_with_stdio(false); cin.tie(nullptr);
+
+const int INF = 1e9;
+const ll LINF = 1e18;
+const int MOD = 1e9 + 7;
+
+template<typename T, typename U>
+auto max(T a, U b) -> decltype(a + b)
+{
+    return (a > b ? a : b);
+}
+
+template<typename T, typename U>
+auto min(T a, U b) -> decltype(a + b)
+{
+    return (a < b ? a : b);
+}
+
+void solve()
+{
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+    int res = 0;
+    unordered_map<char, int> mp;
+    for (int i = 0; i < s.size(); i++)
+    {
+        if (i & 1)
+        {
+            if (mp[s[i] + 32] > 0) mp[s[i] + 32]--;
+            else res++;
+        }
+        else mp[s[i]]++;
+    }
+    cout << res << endl;
+}
 
 int main()
 {
-    FAST_IO;
+    fastio;
 
-    int t, res = 0;
-    cin >> t;
-    string s;
-    cin >> s;
-    unordered_map<char, int> keys;
-
-    FOR(i, 0, 2 * t - 2)
+    int t;
+    t = 1;
+    while (t--)
     {
-        if (islower(s[i]))
-        {
-            keys[toupper(s[i])]++;
-            continue;
-        }
-
-        if (keys[s[i]] > 0)
-        {
-            keys[s[i]]--;
-            continue;
-        }
-
-        res++;
+        solve();
     }
-    
-    cout << res;
 
     return 0;
 }

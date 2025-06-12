@@ -33,19 +33,16 @@ auto min(T a, U b) -> decltype(a + b)
 
 void solve()
 {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-    for (int i = 1; i < n - 1; i++)
+    int n, x;
+    cin >> n >> x;
+    vector<int> a(n + 1, 0);
+    int maxx = INT_MIN;
+    for (int i = 1; i <= n; i++)
     {
-        if (s[i - 1] == '.' and s[i] == '.' and s[i + 1] == '.')
-        {
-            cout << 2 << endl;
-            return;
-        }
+        cin >> a[i];
+        maxx = max(maxx, a[i] - a[i - 1]);
     }
-    cout << count(all(s), '.') << endl;
+    cout << max(maxx, 2 * (x - a[n])) << endl;
 }
 
 int main()

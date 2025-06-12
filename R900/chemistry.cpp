@@ -33,19 +33,16 @@ auto min(T a, U b) -> decltype(a + b)
 
 void solve()
 {
-    int n;
-    cin >> n;
+    int n, k;
+    cin >> n >> k;
     string s;
     cin >> s;
-    for (int i = 1; i < n - 1; i++)
-    {
-        if (s[i - 1] == '.' and s[i] == '.' and s[i + 1] == '.')
-        {
-            cout << 2 << endl;
-            return;
-        }
-    }
-    cout << count(all(s), '.') << endl;
+    vector<int> freq(26, 0);
+    for (char& c : s) freq[c - 'a']++;
+    int num = 0;
+    for (int& x : freq) if(x & 1) num++;
+    if ((num - k) > 1) cout << "NO\n";
+    else cout << "YES\n";
 }
 
 int main()
