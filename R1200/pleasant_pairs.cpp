@@ -13,7 +13,6 @@ constexpr int MOD = 1000000007;
 #define umll unordered_map<ll, ll>
 #define umsi unordered_map<string, int>
 
-#define $ " \n"
 #define pb push_back
 #define fi first
 #define se second
@@ -24,26 +23,28 @@ constexpr int MOD = 1000000007;
 
 void solve()
 {
-    ll n;
+    int n, res = 0;
     cin >> n;
-    vll a(n);
-    FOR(i, 0, n)
+    vector<int> a(2 * n + 10);
+    for (int i = 0; i < n; i++)
     {
-        cin >> a[i];
+        int x;
+        cin >> x;
+        a[x] = i + 1;
     }
-    ll res = 0;
-
-    FOR(i, 0, n - 1)
+    for (int p = 1; p <= 2 * n; p++)
     {
-        int minn = min(n, 2 * n - i);
-        FOR(j, i + 1, minn)
+        for (int d = 1; d * d < p; d++)
         {
-            if (a[i] * a[j] <= 2 * n)
-                if(i + j + 2 == a[i] * a[j]) res++;
+            if (p % d) continue;
+            int x = d;
+            int y = p / d;
+            if (a[x] == 0 || a[y] == 0) continue;
+            int i = a[x], j = a[y];
+            if (i + j == p && i != j) res++;
         }
     }
-
-    cout << res << $;
+    cout << res << endl;
 }
 
 int main()
