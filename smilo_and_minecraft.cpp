@@ -31,9 +31,45 @@ auto min(T a, U b) -> decltype(a + b)
     return (a < b ? a : b);
 }
 
+int pre_sum[501][501];
 void solve()
 {
-    
+    int n, m, k;
+    cin >> n >> m >> k;
+    vector<string> mine(n);
+    int total_gold = 0;
+    for (string& s : mine)
+    {
+    	cin >> s;
+    	for (char& c : s)
+    	{
+    		total_gold += (c == 'g');
+    	}
+    }
+
+    for (int i = 1; i <= n; i++)
+    {
+    	for (int j = 1; j <= m; j++)
+    	{
+    		pre_sum[i][j] = (mine[i - 1][j - 1] == 'g') + pre_sum[i - 1][j] + pre_sum[i][j - 1] - pre_sum[i - 1][j - 1];
+    	}
+    }
+
+    int ans = INT_MAX;
+    for (int i = 0; i < n; i++)
+    {
+    	for (int j = 0; j < m; j++)
+    	{
+    		if (mine[i][j] == '.')
+    		{
+    			int a = max(i - k + 1, 0), b = min(i + k, n), c = max(j - k + 1, 0), d = min(j + k, m);
+    			int cur = pre_sum[b][d] - pre_sum[a][d] - pre_sum[b][c] + pre_sum[a][c];
+    			ans = min(ans, cur);
+    		}
+    	}
+    }
+
+    cout << total_gold - ans << endl;
 }
 
 int main()
