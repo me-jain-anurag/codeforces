@@ -16,19 +16,19 @@ void solve() {
     ll n, k;
     cin >> n >> k;
 
-    vector<ll> a(23);
+    vector<ll> a(37);
 
-    for (int i = 0; i < 23; i++) {
+    for (int i = 0; i < 37; i++) {
         a[i] = pow(3, i + 1) + i * pow(3, i - 1);
     }
 
-    string num;
+    vll num;
     ll x = n;
     int p = 0;
 
     while (x > 0) {
         p += x % 3;
-        num += (char) ((x % 3) + '0');
+        num.push_back(x % 3);
         x /= 3;
     }
 
@@ -41,15 +41,15 @@ void solve() {
     int s = num.size();
 
     for (int i = s - 1; i > 0; i--) {
-        while (p + 2 <= k && num[i] > '0') {
-            num[i]--;
-            num[i - 1] += 3;
-            p += 2;
-        }
+        int x = min(num[i], (k - p) >> 1);
+        num[i] -= x;
+        num[i - 1] += 3 * x;
+        p += 2 * x;
+        if (p + 2 > k) break;
     }
 
     for (int i = 0; i < s; i++) {
-        res += (num[i] - '0') * a[i];
+        res += num[i] * a[i];
     }
 
     cout << res << endl;
