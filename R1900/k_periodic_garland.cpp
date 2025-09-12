@@ -19,7 +19,25 @@ void solve() {
     string s;
     cin >> s;
 
-    
+    int ones = count(all(s), '1');
+    vector<string> a(k);
+    for (int i = 0; i < n; i++) {
+        a[i % k].push_back(s[i]);
+    }
+
+    int res = 0;
+    for (string& x : a) {
+        int cnt = 0, most = 0;
+        for (char& c : x) {
+            if (c == '1') cnt++;
+            else cnt--;
+            most = max(cnt, most);
+            if (cnt < 0) cnt = 0;
+        }
+        res = max(res, most);
+    }
+
+    cout << ones - res << endl;
 }
 
 int main() {
