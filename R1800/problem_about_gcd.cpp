@@ -34,12 +34,10 @@ void solve()
     ll k = r - l, x = k;
     while (k >= 0ll)
     {
-        //cout << k << " ";
         ll y = 0ll;
-        while (y + k < x + 1ll)
+        while (x >= k + y * g)
         {
             ll L = l + y * g, R = L + k;
-            //cout << L << "L " << R << "R  ";
             if (gcd(L, R) == g)
             {
                 cout << L << " " << R << endl;

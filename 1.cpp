@@ -13,14 +13,7 @@ using namespace std;
 #define endl '\n'
 
 void solve() {
-    int n;
-    cin >> n;
-
-    vll a(n);
-    for (auto& x : a) {
-        cin >> x;
-
-    }
+    
 }
 
 int main() {
