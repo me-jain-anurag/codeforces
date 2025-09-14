@@ -33,15 +33,24 @@ void solve() {
     int i = 0;
 
     while (i < most) {
-        sort(all(a), [i](vi& x, vi& y){
-            if (x.size() <= i) return false;
-            if (y.size() <= i) return true;
-            vi g(x.begin() + i, x.end());
-            vi p(y.begin() + i, y.end());
-            return g < p;
-        });
-        for (; i < a[0].size(); i++) {
-            res[i] = a[0][i];
+        int best = -1;
+
+        for (int j = 0; j < n; j++) {
+            if (a[j].size() > i) {
+                best = j;
+                break;
+            }
+        }
+
+        for (int j = best + 1; j < n; j++) {
+            if (a[j].size() <= i) continue;
+            if (lexicographical_compare(a[j].begin() + i, a[j].end(), a[best].begin() + i, a[best].end())) {
+                best = j;
+            }
+        }
+        
+        for (; i < a[best].size(); i++) {
+            res[i] = a[best][i];
         }
     }
 
