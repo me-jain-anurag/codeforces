@@ -13,32 +13,18 @@ using namespace std;
 #define endl '\n'
 
 void solve() {
-    int n;
-    cin >> n;
-    vi a(n);
+    int n, m;
+    string s;
+    cin >> n >> m;
+    cin >> s;
 
-    vi freq(n + 1);
+    vi a(m), b;
+    for(int i = 0; i < m; i++) cin >> a[i];
 
-    for (auto& x : a) {
-        cin >> x;
-        freq[x]++;
+    int g = 0, x = 1;
+    for (char& c : s) {
+        if ()
     }
-
-    bool flag = true;
-    for (int i = 1; i <= n; i++) {
-        if (freq[i] > 0) {
-            if (freq[i] != i) flag = false;
-        }
-    }
-
-    if (flag == false) {
-        cout << -1 << endl;
-        return;
-    }
-
-    for (auto& x : a) cout << x << " ";
-
-    cout << endl;
 }
 
 int main() {
