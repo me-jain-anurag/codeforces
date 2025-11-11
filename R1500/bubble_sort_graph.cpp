@@ -12,32 +12,29 @@ using namespace std;
 #define pb push_back
 #define endl '\n'
 
-ll query(ll a, ll b) {
-    cout << "? " << a << " " << b << endl;
-    cout.flush();
-    ll x; cin >> x;
-    return x;
-}
-
-void answer(ll n) {
-    cout << "! " << n << endl;
-    cout.flush();
-}
-
 void solve() {
     int n;
     cin >> n;
+    vi a(n);
+    for (int i = 0; i < n; i++) cin >> a[i];
 
-    
+    vi lis(n + 1, 1e9);
+    for (int i = 0; i < n; i++) {
+        int ind = upper_bound(all(lis), a[i]) - lis.begin();
+        lis[ind] = a[i];
+    }
+
+    for (int i = 0; i <= n; i++) {
+        if (lis[i] == 1e9) {
+            cout << i << endl;
+            return;
+        }
+    }
 }
 
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(0);
-    int t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
+    solve();
     return 0;
 }
